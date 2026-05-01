@@ -21,6 +21,7 @@ with engine.begin() as _conn:
                     "UPDATE products SET unit = COALESCE(JSON_UNQUOTE(JSON_EXTRACT(units, '$[0]')), '')"
                 ))
                 _conn.execute(text("ALTER TABLE products DROP COLUMN units"))
+            _conn.execute(text("UPDATE products SET is_deleted = FALSE WHERE is_deleted IS NULL"))
     except Exception as _e:
         print(f"[migration] products: {_e}")
 

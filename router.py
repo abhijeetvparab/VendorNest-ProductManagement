@@ -42,7 +42,7 @@ def list_products(
         raise HTTPException(status_code=403, detail="Access denied")
 
     if not include_deleted:
-        q = q.filter(Product.is_deleted == False)  # noqa: E712
+        q = q.filter((Product.is_deleted == False) | (Product.is_deleted == None))  # noqa: E712,E711
 
     return q.order_by(Product.created_at.desc()).all()
 
