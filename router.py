@@ -3,10 +3,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from database import get_db
-from models import User, UserRole
+from models import User, UserRole, Product
 from auth import get_current_user
-from product_management.models import Product
-from product_management.schemas import ProductCreate, ProductUpdate, ProductResponse
+from schemas import ProductCreate, ProductUpdate, ProductResponse
 
 router = APIRouter(prefix="/api/products", tags=["Products"])
 
